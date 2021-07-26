@@ -1,8 +1,15 @@
+version: 3
 services:
-  web:
-    image: "nginx:ubuntu"
-  database:
-    image: "mysql:alpine"
-  state:
-    image: "redis:alpine"
-  
+
+  mysql:
+    build: ./mysql
+
+  redis:
+    image: "redis:latest"
+    depends_on: mysql
+    
+  nginx:
+    build: ./nginx
+    ports:
+      - 5000:80
+    depends_on: redis
