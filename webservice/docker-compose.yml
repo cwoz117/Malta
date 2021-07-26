@@ -1,0 +1,8 @@
+services:
+  web:
+    image: "nginx:ubuntu"
+  database:
+    image: "mysql:alpine"
+  state:
+    image: "redis:alpine"
+  

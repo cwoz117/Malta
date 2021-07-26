@@ -27,10 +27,15 @@ else # Set the env in profile
 fi
 
 # PPA Dependencies
-if ! grep -q "^deb .*$PPA.*" /etc/apt/sources.list /etc/apt/sources.list.d/*; then
-    echo "PPA Not found, adding it now"
-    add-apt-repository ppa:ondrej/php -y
+if ! grep -q -s "^deb .*$PPA.*" /etc/apt/sources.list /etc/apt/sources.list.d/*; then
+    echo 'PPA Not found, adding it now'
+    #echo 'deb http://ppa.launchpad.net/ondrej/php/ubuntu focal main' > /etc/apt/sources.list.d/ondrej-ubuntu-php-focal.list
+    #apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 4F4EA0AAE5267A6C    
     apt update -y
+    apt install software-properties-common -y
+    add-apt-repository ppa:/ondrej/php -y
+    add-apt-repository ppa:/ondrej/nginx-mainline
+    apt remove software-properties-common -y
 fi
 
 # If its a fresh install
@@ -41,6 +46,7 @@ then
     service php$version-fpm start
     exit 0
 fi
+
 # If the versions are different
 cur_ver=$(php -v | grep ^PHP | cut -d' ' -f2 | cut -c1-3)
 if [[ $cur_ver != $version ]]; then

@@ -1,3 +1,0 @@
-value
-ENV=dev
-ANOTHER=ENV_VAR
