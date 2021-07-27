@@ -1,6 +1,11 @@
+up:
+	docker-compose up -d
 
-build:
-	
+stop:
+	docker-compose stop
 
-run:
-	docker-compose up
+rebuild:
+	docker-compose up --build
+
+down:
+	docker-compose down --volumes
