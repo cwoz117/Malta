@@ -13,5 +13,3 @@ COPY ./default.conf /etc/nginx/sites-available/default
 
 EXPOSE 80
 CMD ["php-app/entrypoint.sh"]
-#CMD "php-fpm8.0"
-#CMD ["nginx",  "-g",  "daemon off;"]
