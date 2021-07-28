@@ -3,9 +3,10 @@ RUN apt update -y && apt install iptables -y
 
 #RUN iptables -I DOCKER-USER -i ext_if ! -s 10.0.0.0/24 -j DROP &&\
 #    iptables -I DOCKER-USER
-
+COPY ./iptables.sh /iptables.sh
 COPY ./templates/default.conf /etc/nginx/conf.d/default.conf
 
+RUN /iptables.sh
 RUN touch /var/run/nginx.pid && \
     chown -R nginx:nginx /var/run/nginx.pid && \
     chown -R nginx:nginx /var/log/nginx && \
