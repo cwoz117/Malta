@@ -3,6 +3,7 @@
 #!/bin/bash
 
 # Start the first process
+#su -c 'service nginx start' www-data
 service nginx start
 status=$?
 if [ $status -ne 0 ]; then
