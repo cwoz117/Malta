@@ -9,3 +9,6 @@ stop:
 	docker container rm $(app)
 clean:
 	#docker system prune -a
+
+export:
+	curl localhost:8080/index.php > result.html
