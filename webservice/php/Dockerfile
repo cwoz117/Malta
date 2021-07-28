@@ -9,6 +9,5 @@ RUN sed -i -e '$aextension=redis' /usr/local/etc/php/php.ini
 
 FROM php:7.4-fpm-alpine3.13
 COPY --from=build / /
-EXPOSE 9000
 USER www-data
 CMD "php-fpm"
