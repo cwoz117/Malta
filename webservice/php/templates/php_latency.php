@@ -8,13 +8,20 @@
 
 <h2>MySQL Status</h2>
 <?php
-  $output = shell_exec('ping -c 5 mysql');
-  echo "<pre>$output</pre>";
+$con = mysqli_connect("mysql","root","root","test_db");
+
+// Check connection
+if (mysqli_connect_errno()) {
+  echo "Failed to connect to MySQL: " . mysqli_connect_error();
+  exit();
+}
+echo "<p> Connected Successfully</p>"
 ?>
 <h2>Redis Status</h2>
-<?php
-  $output = shell_exec('ping -c 5 redis');
-  echo "<pre>$output</pre>";
+<?php 
+   $redis = new Redis(); 
+   $redis->connect('redis', 6379); 
+   echo "<p>Connected Sucessfully</p>"; 
 ?>
 
 </body>
